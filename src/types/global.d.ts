@@ -10,7 +10,7 @@ type InfoType = {
 }
 import { Socket, io } from "socket.io-client";
 import { DefaultEventsMap } from "socket.io/dist/typed-events";
-import { SignalProtocolManager, SignalServerStore } from "../crypto/mystore"
+import { SignalProtocolManager, SignalServerStore } from "../crypto/store"
 
 export { };
 declare global {

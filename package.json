@@ -69,6 +69,7 @@
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
+    "protobufjs": "^7.2.6",
     "redis": "^4.1.0",
     "rotating-file-stream": "^3.0.3",
     "socket.io": "^4.5.1",

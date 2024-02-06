@@ -1,12 +1,15 @@
 import * as readline from 'readline';
 import { act } from '../server';
+import { envs } from '../types/my';
 
 export async function setupInteractive(): Promise<void> {
   // Setup Interactive stdin
   enableActions();
   //envs
-  const askTheseKeys = Object.keys(process.env).reduce((res, cur) => { if (!process.env[cur]) res.push(cur); return res }, [] as string[]);
-  Object.entries(await input(askTheseKeys)).forEach(([key, value]) => process.env[key] = value);
+  const askTheseKeys = envs.filter((e) => !process.env[e]);
+  for (const e of askTheseKeys) {
+    process.env[e] = (await input(e))[e]
+  }
   console.clear();
 };
 

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { input, printMessages } from "../terminal";
 import { io } from "socket.io-client";
+import { Routes } from "../types/my";
 
 export async function loadUser(register: boolean = false) {
   const options = {
@@ -27,9 +28,9 @@ export async function loadUser(register: boolean = false) {
     .catch((err) => console.error(err?.response?.status, err?.response?.statusText)))
 }
 
-export async function pgpd(what: Routes, options?: { data?: { [key: string]: any }, param?: string, query?: string }): Promise<Array<any> | any> {
+export async function pgpd(what: Routes, options?: { data?: { [key: string]: any }, param?: string, query?: string, patch?: boolean }): Promise<Array<any> | any> {
   const opts = {
-    method: !!options?.data ? 'POST' : 'GET',
+    method: !!options?.data ? options?.patch ? "PATCH" : 'POST' : 'GET',
     url: `http://${process.env.url}:4000/${what}${!!options?.param ? "/" + options.param : ""}${!!options?.query ? "?" + options.query : ""}`,
     headers: {
       cookie: process.info.cookie,
